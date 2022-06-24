@@ -1,0 +1,37 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a995fba36e2be15bf988610a3120d423",
+    "packages": [
+        {
+            "name": "external/file",
+            "version": "1.0.0",
+            "dist": {
+                "type": "file",
+                "url": "https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js"
+            },
+            "type": "library"
+        },
+        {
+            "name": "external/zip",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/jquery/jquery/archive/refs/tags/3.6.0.zip"
+            },
+            "type": "library"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": [],
+    "plugin-api-version": "2.3.0"
+}
