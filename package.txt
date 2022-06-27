@@ -1,0 +1,12 @@
+# This file may be used to download dependant files or libraries via wget.
+# Each line is one downloadable file. The format to adhere to is:
+#
+# <DOWNLOAD_URL> <TARGET_FILENAME> <EXPECTED SHA1 CHECKSUM>
+#
+# Example:
+# http://example.com/some/foo.jar vendor/bar.jar 7a4757da1075bf9faf8fa34bafcbd2422ae6c714
+#
+https://github.com/jquery/jquery/archive/refs/tags/3.6.0.zip public/jquery-3.6.0.zip d620740b7d12b3d8238a28c4d2f2a3950b812d1e
+https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js public/custom-datepicker.js 72a7dbfc8aa2c8de4810c73fb601e77cf289e673
+
+

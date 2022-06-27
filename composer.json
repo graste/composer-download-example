@@ -11,7 +11,8 @@
     "minimum-stability": "stable",
     "require": {
         "external/file": "1.0.0",
-        "external/zip": "1.0.0"
+        "external/zip": "1.0.0",
+        "external/jquery": "3.6.0"
     },
     "repositories": [
         {
@@ -21,7 +22,20 @@
                 "version": "1.0.0",
                 "dist": {
                     "url": "https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js",
-                    "type": "file"
+                    "type": "file",
+                    "shasum": "72a7dbfc8aa2c8de4810c73fb601e77cf289e673"
+                }
+            }
+        },
+        {
+            "type": "package",
+            "package": {
+                "name": "external/jquery",
+                "version": "3.6.0",
+                "dist": {
+                    "url": "https://code.jquery.com/jquery-3.6.0.js",
+                    "type": "file",
+                    "shasum": "af32f706407ab08f800c5e697cce92466e735847"
                 }
             }
         },
@@ -32,31 +46,41 @@
                 "version": "1.0.0",
                 "dist": {
                     "url": "https://github.com/jquery/jquery/archive/refs/tags/3.6.0.zip",
-                    "type": "zip"
+                    "type": "zip",
+                    "shasum": "d620740b7d12b3d8238a28c4d2f2a3950b812d1e"
                 }
             }
         }
     ],
     "scripts": {
-        "clean": "rm -rf vendor public/js public/css --",
-        "download-files": [
+        "clean": "rm -rf vendor public",
+        "wget-files": [
             "wget https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js -O public/js/DatetimeLocalPicker.js",
             "wget https://www.berlin.de/css/berlin_de/echo/bundle/portal.css?_ts=1655980469 -O public/css/portal.css",
             "wget https://www.berlin.de/css/berlin_de/echo/bundle/portal.js?1655980469 -O public/js/portal.js"
+        ],
+        "curl-download-files": [
+            "curl -fLs https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js | tee DatetimeLocalPicker.js | sha256sum -c curl-checksum.txt"
+        ],
+        "wget-packages": [
+            "bin/wget-packages.sh"
         ],
         "pre-install-cmd": [
             "mkdir -p public/js public/css"
         ],
         "link-deps": [
             "ln -sf ../../vendor/external/file/DatetimeLocalPicker.js public/js/CustomDatetimeLocalPicker.js",
-            "ln -sf ../../vendor/external/zip/dist public/js/jquery"
+            "ln -sf ../../vendor/external/zip/dist public/js/jquery",
+            "ln -sf ../../vendor/external/jquery/jquery-3.6.0.js public/js/jquery-3.6.0.js"
         ],
         "post-install-cmd": [
-            "@download-files",
+            "@wget-packages",
+            "@wget-files",
             "@link-deps"
         ],
         "post-update-cmd": [
-            "@download-files",
+            "@wget-packages",
+            "@wget-files",
             "@link-deps"
         ]
     }

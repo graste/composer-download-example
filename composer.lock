@@ -4,14 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a995fba36e2be15bf988610a3120d423",
+    "content-hash": "8fc12bb2d387c47d02f60331960eb086",
     "packages": [
         {
             "name": "external/file",
             "version": "1.0.0",
             "dist": {
                 "type": "file",
-                "url": "https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js"
+                "url": "https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js",
+                "shasum": "72a7dbfc8aa2c8de4810c73fb601e77cf289e673"
+            },
+            "type": "library"
+        },
+        {
+            "name": "external/jquery",
+            "version": "3.6.0",
+            "dist": {
+                "type": "file",
+                "url": "https://code.jquery.com/jquery-3.6.0.js",
+                "shasum": "af32f706407ab08f800c5e697cce92466e735847"
             },
             "type": "library"
         },
@@ -20,7 +31,8 @@
             "version": "1.0.0",
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/jquery/jquery/archive/refs/tags/3.6.0.zip"
+                "url": "https://github.com/jquery/jquery/archive/refs/tags/3.6.0.zip",
+                "shasum": "d620740b7d12b3d8238a28c4d2f2a3950b812d1e"
             },
             "type": "library"
         }
