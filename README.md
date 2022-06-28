@@ -9,14 +9,14 @@ tree public
 composer clean
 ```
 
-See [`composer.json`](composer.json) for some methods to download files.
+See [`composer.json`](composer.json) for some methods to download files. Methods somehow explained in this document are:
 
-1. Let Composer download a file via custom repository/package
-2. Let Composer download a zip file via custom repository/package
-3. Direct download via `scripts`
-4. Direct download via `scripts` with checksums
-5. Direct download via custom bash script
-6. Composer plugin to use PHP instead of bash and maybe create commands
+1. [Let Composer download a file via custom repository/package](#let-composer-download-a-file-via-custom-repositorypackage)
+2. [Let Composer download a zip file via custom repository/package](#let-composer-download-a-zip-file-via-custom-repositorypackage)
+3. [Direct download via `scripts`](#direct-download-via-scripts)
+4. [Direct download via `scripts` with checksums](#direct-download-via-scripts-with-checksums)
+5. [Verified download via custom bash script](#verified-download-via-custom-bash-script)
+6. [Composer plugin to use PHP and create custom commands](#composer-plugin-to-use-php-and-create-custom-commands)
 
 ## Let Composer download a file via custom repository/package
 
@@ -115,16 +115,16 @@ That's why downloading files with checksum verification afterwards could be done
   "scripts": {
     "wget-files": [
       "wget https://example.com/some/file.js -O public/js/file.js",
-      "wget https://example.com/some/otherfile.js -O public/js/otherfile.js"
-      "sha256sum checksums.txt"
+      "wget https://example.com/some/otherfile.js -O public/js/otherfile.js",
+      "sha256sum --status -c checksums.txt"
     ]
   }
 }
 ```
 
-The `checksums.txt` contains one line per file with `THE-ACTUAL-CHECKSUM path/to/file.js` entries. When the checksum verification fails, the composer script fails. The files will be left in place, which is maybe not wanted.
+The `checksums.txt` contains one line per file with `THE-ACTUAL-CHECKSUM path/to/file.js` entries. When the checksum verification fails, the composer script fails. The files will be left in place, which is maybe not wanted. To create a checksum file e.g. use `sha256sum -b * > checksums.txt` in a folder with the files that will be downloaded.
 
-## Direct download via custom bash script
+## Verified download via custom bash script
 
 As the above is a bit verbose and one might want to prevent larger scripting operations in the `composer.json` file one solution is to create a shell script and reference that:
 
@@ -138,7 +138,7 @@ As the above is a bit verbose and one might want to prevent larger scripting ope
 
 The shell script uses a [`package.txt`](package.txt) file that has one line per file with source URL, target path locally and expected sha1 checksum. The script downloads the files into a temporary place and moves them to the target location when the checksum is valid. This method is preferable as one can customize the error handling, whether downloaded files with wrong checksums are deleted etc.
 
-## Composer plugin to use PHP instead of bash and maybe create commands
+## Composer plugin to use PHP and create custom commands
 
 When all of the above is either to verbose (multiple custom repositories or extensive shell scripting) or it's not working as not all target environments even have bash scripting capabilities there's the option to write [Composer plugins](https://getcomposer.org/doc/articles/plugins.md). Plugins can expand Composer's functionalities. They're written in PHP and can be published as normal Composer packages ([Plugin Package](https://getcomposer.org/doc/articles/plugins.md#plugin-package)). That is, your project can either have a plugin defined locally or use a packaged plugin. Plugins can be run manually in the same way as running Composer scripts. To be able to use a plugin in your project you need to [allow the plugin to be used](https://getcomposer.org/doc/06-config.md#allow-plugins) in the `composer.json` file.
 
