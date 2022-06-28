@@ -20,7 +20,7 @@ See [`composer.json`](composer.json) for some methods to download files. Methods
 
 ## Let Composer download a file via custom repository/package
 
-Composer works with repositories and packages. It defaults to [packagist.org](https://packagist.org), but allows definition of custom repositories and packages in root `composer.json` files. You define a custom repository with a package name and version and a `dist` location of type `file` with URL and checksum:
+Composer as a dependency manager works with [repositories and packages](https://getcomposer.org/doc/05-repositories.md). It defaults to [packagist.org](https://packagist.org) as the only registered repository, but allows definition of custom repositories and packages in root `composer.json` files. You define a custom repository with a package `name` and `version` and a `dist` location of type `file` with URL and checksum:
 
 ```json
 {
