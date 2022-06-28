@@ -54,25 +54,9 @@
     ],
     "scripts": {
         "clean": "rm -rf vendor public",
-        "wget-files": [
-            "wget https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js -O public/js/DatetimeLocalPicker.js",
-            "wget https://www.berlin.de/css/berlin_de/echo/bundle/portal.css?_ts=1655980469 -O public/css/portal.css",
-            "wget https://www.berlin.de/css/berlin_de/echo/bundle/portal.js?1655980469 -O public/js/portal.js"
-        ],
-        "curl-download-files": [
-            "curl -fLs https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js | tee DatetimeLocalPicker.js | sha256sum -c curl-checksum.txt"
-        ],
-        "wget-packages": [
-            "bin/wget-packages.sh"
-        ],
-        "pre-install-cmd": [
-            "mkdir -p public/js public/css"
-        ],
-        "link-deps": [
-            "ln -sf ../../vendor/external/file/DatetimeLocalPicker.js public/js/CustomDatetimeLocalPicker.js",
-            "ln -sf ../../vendor/external/zip/dist public/js/jquery",
-            "ln -sf ../../vendor/external/jquery/jquery-3.6.0.js public/js/jquery-3.6.0.js"
-        ],
+        "mkdir-folders": "mkdir -p public/js public/css",
+        "pre-install-cmd": "@mkdir-folders",
+        "pre-update-cmd": "@mkdir-folders",
         "post-install-cmd": [
             "@wget-packages",
             "@wget-files",
@@ -82,6 +66,17 @@
             "@wget-packages",
             "@wget-files",
             "@link-deps"
+        ],
+        "wget-packages": "bin/wget-packages.sh",
+        "wget-files": [
+            "wget https://raw.githubusercontent.com/graste/datetime-local-picker/master/src/DatetimeLocalPicker.js -O public/js/DatetimeLocalPicker.js",
+            "wget https://www.berlin.de/css/berlin_de/echo/bundle/portal.css?_ts=1655980469 -O public/css/portal.css",
+            "wget https://www.berlin.de/css/berlin_de/echo/bundle/portal.js?1655980469 -O public/js/portal.js"
+        ],
+        "link-deps": [
+            "ln -sf ../../vendor/external/file/DatetimeLocalPicker.js public/js/CustomDatetimeLocalPicker.js",
+            "ln -sf ../../vendor/external/zip/dist public/js/jquery",
+            "ln -sf ../../vendor/external/jquery/jquery-3.6.0.js public/js/jquery-3.6.0.js"
         ]
     }
 }
